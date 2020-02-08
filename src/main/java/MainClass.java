@@ -26,7 +26,7 @@ public class MainClass {
         // driver = new ChromeDriver();
         //driver = new EdgeDriver();
         //
-        //driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
         driver.get("https://gmail.com");
         wait = (new WebDriverWait(driver,10));
@@ -38,12 +38,10 @@ public class MainClass {
         mailPage.newMessageClick();                                                            //заходим на страницу почты
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@name='to']")));
         mailPage.typeToEmail(emailTo,subj,String.format("Количество писем %s",mailPage.showCountEmail())); //отправляем письмо
-        //System.out.println(mailPage.showCountEmail());
-        //Thread.sleep(1000);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='link_vsm']")));
-        driver.findElement(By.xpath("//span[@id='link_vsm']")).getText();
-       //System.out.println(driver.findElement(By.xpath("//span[@id='link_vsm']")).getText());
-        Thread.sleep(5000);
-       driver.quit();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='link_vsm']"))); //ждем появления окна что письмо отправляется
+
+        Thread.sleep(6000);  // надо подождать иначе письмо не отправится если закроем сразу.
+        driver.quit();
     }
 }
