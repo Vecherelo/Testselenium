@@ -41,7 +41,7 @@ public class MainClass {
         //System.out.println(mailPage.showCountEmail());
         //Thread.sleep(1000);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='link_vsm']")));
-        driver.findElement(By.xpath("//span[@id='link_undo']")).getText();
+        driver.findElement(By.xpath("//span[@id='link_vsm']")).getText();
        //System.out.println(driver.findElement(By.xpath("//span[@id='link_vsm']")).getText());
         Thread.sleep(5000);
        driver.quit();
