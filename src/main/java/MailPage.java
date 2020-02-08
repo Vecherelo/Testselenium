@@ -14,6 +14,7 @@ public class MailPage {
     private By toSubject = By.xpath("//*[@name='subjectbox']");
     private By toText = By.xpath("//div[@role='textbox']");
     private By sendButton = By.xpath("//div[contains(@data-tooltip,\"Enter\")and @role=\"button\"]");
+    private By textSendDone =  By.xpath("//div[@role='alert']/div/div[2]//span[text()='Письмо отправлено.']");
 
     /**
      * Получаем количество писем
@@ -28,6 +29,11 @@ public class MailPage {
      * @return
      */
     public String readTextForCheck() {return driver.findElement(textCheckName).getText();}
+    /**
+     * текст элемента что письмо отпроавлено
+     * @return
+     */
+    public String readTextAfterSend() {return driver.findElement(textSendDone).getText();}
 
     /**
      * текст элемента

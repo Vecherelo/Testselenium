@@ -17,7 +17,7 @@ public class MainClass {
     static String emailTo = "Mogorin@gmail.com";  // кому письмо отправить
     static  String subj = "Тестовое задание Могорин" ; // тема письма
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         System.setProperty("webdriver.gecko.driver","C:\\IdeaProjects\\Testselenium\\drivers\\geckodriver.exe");
       //  System.setProperty("webdriver.chrome.driver","C:\\IdeaProjects\\Testselenium\\drivers\\chromedriver.exe");
 
@@ -29,7 +29,7 @@ public class MainClass {
         //driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
         driver.get("https://gmail.com");
-        wait = (new WebDriverWait(driver,5));
+        wait = (new WebDriverWait(driver,10));
         LoginPage loginPage = new LoginPage(driver);
         PasswordPage passwordPage = loginPage.registeremail("ivanov05022020@gmail.com");  //заходим на первую страницу
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("passwordNext")));
@@ -39,7 +39,11 @@ public class MainClass {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@name='to']")));
         mailPage.typeToEmail(emailTo,subj,String.format("Количество писем %s",mailPage.showCountEmail())); //отправляем письмо
         //System.out.println(mailPage.showCountEmail());
-
-        //driver.quit();
+        //Thread.sleep(1000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='link_vsm']")));
+        driver.findElement(By.xpath("//span[@id='link_undo']")).getText();
+       //System.out.println(driver.findElement(By.xpath("//span[@id='link_vsm']")).getText());
+        Thread.sleep(5000);
+       driver.quit();
     }
 }
