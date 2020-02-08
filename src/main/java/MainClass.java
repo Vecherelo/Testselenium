@@ -40,8 +40,7 @@ public class MainClass {
         mailPage.typeToEmail(emailTo,subj,String.format("Количество писем %s",mailPage.showCountEmail())); //отправляем письмо
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='link_vsm']"))); //ждем появления окна что письмо отправляется
-
-        Thread.sleep(6000);  // надо подождать иначе письмо не отправится если закроем сразу.
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("link_undo")));// надо подождать иначе письмо не отправится если закроем сразу.
         driver.quit();
     }
 }
